@@ -972,18 +972,18 @@ void permutation(bignum_t a,int m,int n){
 
 ```c
 int father[15];
-voidmakeSet(){
+void makeSet(){
     for(inti = 0;i <= n;i++){
         father[i] = i;
     }
 }
-intfindSet(intx){
+int findSet(intx){
     if(x != father[x]){
         father[x] = findSet(father[x]);
     }
     returnfather[x];
 }
-voidunionSet(intx,inty){
+void unionSet(intx,inty){
     x = findSet(x);
     y = findSet(y);
     father[x] = y;
@@ -1002,15 +1002,15 @@ voidunionSet(intx,inty){
     f[0] = 1;//f[2^0 - 1] = f[0] = 1 (0的阶乘为1)
     for(int i = 1;i < (1<<n);i++){// 1 到 2^n - 1
         for(int t = i; t > 0; t -= (t & -t)){
-		//f(01101) = f(00101) + f(01001) + f(01100)
-                                //1 t = 13
-                                //2 13 -= 1
-                                //3 12 -= 4
-                                //4 8  -= 8
-            f[i] += f[i ^ (t & -t)];//将某些位变为0 计算和
-                    //1 f[(01101) ^ (01101 & 10011)] = f[01100]
-                    //2 f[(01101) ^ (01100 & 10100)] = f[01001]
-                    //3 f[(01101) ^ (01000 & 11000)] = f[00101]
+			//f(01101) = f(00101) + f(01001) + f(01100)
+        	//1 t = 13
+        	//2 13 -= 1
+        	//3 12 -= 4
+        	//4 8  -= 8
+        	f[i] += f[i ^ (t & -t)];//将某些位变为0 计算和
+        	//1 f[(01101) ^ (01101 & 10011)] = f[01100]
+        	//2 f[(01101) ^ (01100 & 10100)] = f[01001]
+        	//3 f[(01101) ^ (01000 & 11000)] = f[00101]
         }
     }
 // n! = f[(1<<n)-1]
@@ -1323,8 +1323,6 @@ matrix fastPower(matrix a,int po){
 }
 ```
 
-#### 20. 精度处理
-
 ```c
 /**
  *矩阵快速幂(2行2列)
@@ -1357,6 +1355,24 @@ matrix fastPower(matrix a,int po){
 }
 ```
 
+#### 20. 精度处理
+
+```c
+/**
+ *返回0表示x==0，-1表示x < 0, 1表示x大于0
+ *complf(a-b) == 0, a == b 或者 fabs(a-b) < eps
+ *complf(a-b) != 0, a != b 或者 fabs(a-b) > eps
+ *complf(a-b) <  0, a <  b 或者 a - b < -eps
+ *complf(a-b) >  0, a >  b 或者 a - b > eps
+ *complf(a-b) <= 0, a <= b 或者 a - b < eps
+ *complf(a-b) >= 0, a >= b 或者 a - b > -eps
+ */	
+#define eps 1e-8
+int complf(double x){ return x < -eps?-1:((x < eps)?0:1);}
+```
+
+
+
 #### 21. 动态规划
 
 ```c
@@ -1385,7 +1401,7 @@ for(i = 1;i <= n;i++){//从第一个对象开始
 #### 22. 素数生成
 
 ```c
-
+/**
  *筛法求素数 筛法求素数，找到[1,MAXL]的所有素数
  */
 #define MAXL 100000
