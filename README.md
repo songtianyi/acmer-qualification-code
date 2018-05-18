@@ -1386,8 +1386,8 @@ long long getPrime(){
             primeTable[prime_num++] = i;
             for(j = i*i,step = 2*i;j <= MAXL;j += step){not_prime[j] = true;}
         }
-	}	
-	return prime_num;
+    }
+    return prime_num;
 }
 
 ```
