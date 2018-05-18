@@ -1760,7 +1760,7 @@ int SPFA(int  ll,int rr){
                     //可以入队且不在队列中
                     //可能会继续松弛表示可以入队
                     my_queue.push(v);
-in_queue[v] = true;//标记为在队列中
+                    in_queue[v] = true;//标记为在队列中
                 }
             }
         }
