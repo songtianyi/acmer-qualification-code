@@ -979,13 +979,13 @@ void makeSet(){
         father[i] = i;
     }
 }
-int findSet(intx){
+int findSet(int x){
     if(x != father[x]){
         father[x] = findSet(father[x]);
     }
     returnfather[x];
 }
-void unionSet(intx,inty){
+void unionSet(int x,int y){
     x = findSet(x);
     y = findSet(y);
     father[x] = y;
