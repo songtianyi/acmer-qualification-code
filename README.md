@@ -1292,39 +1292,6 @@ void trieInsert(struct node *curr,const char *str,const int len){
 ```
 
 #### 19. 矩阵
-
-```c
-/**
- *矩阵快速幂(2行2列)
- */
-typedef double dataType;
-struct matrix{
-    dataType mat[2][2];
-    matrix(){memset(mat,0,sizeof(mat));}//初始化为0
-    matrix(double v1,double v2,double v3,double v4){mat[0][0] = v1;mat[0][1] = v2;mat[1][0] = v3;mat[1][1]=v4;}
-    matrix operator*(const matrix &b){
-        matrix rs;
-        for(int i = 0;i < 2;i++){
-            for(int k = 0;k < 2;k++){
-                for(int j = 0;j < 2;j++){
-                    rs.mat[i][j] += mat[i][k]*b.mat[k][j];
-                }
-            }
-        }
-        return rs;
-    }
-};	
-matrix fastPower(matrix a,int po){
-    //a^po
-    matrix rs(1,0,0,1);//初始化为1
-    while(po){
-        if(po&1){rs = rs*a;}
-        a = a*a;po = (po>>1);
-    }
-    return rs;
-}
-```
-
 ```c
 /**
  *矩阵快速幂(2行2列)
