@@ -719,7 +719,9 @@ private:
          result.len--;//为0的时候不用去掉第一位的0
      return result;
  }
+```
 
+```c
 /**
  *n的阶乘 结果为大数，保存在array数组中
  *end - 1 到 0为结果 (end-1)在前,为高位
