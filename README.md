@@ -983,7 +983,7 @@ int findSet(int x){
     if(x != father[x]){
         father[x] = findSet(father[x]);
     }
-    returnfather[x];
+    return father[x];
 }
 void unionSet(int x,int y){
     x = findSet(x);
