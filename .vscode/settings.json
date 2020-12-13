@@ -1,0 +1,20 @@
+{
+  "markdownFormatter.codeAreaToBlock": "",
+  "markdownFormatter.fullWidthTurnHalfWidth": "auto",
+  "markdownFormatter.formatOpt": {
+    "indent_size": 4
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "all",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    },
+    "editor.snippetSuggestions": "top",
+    "editor.tabCompletion": "on",
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.defaultFormatter": "mervin.markdown-formatter"
+  }
+}
