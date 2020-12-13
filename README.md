@@ -4,7 +4,7 @@
 
 ###### 1.1 符号说明
 
-```pla
+``` pla
       %a(%A)     浮点数、十六进制数字和p-(P-)记数法(C99)
       %c         字符
       %d         有符号十进制整数
@@ -22,16 +22,18 @@
 
 ###### 1.2 对齐
 
-```
+``` 
+
       左对齐："-"   e.g.   "%-20s"
-      右对齐："+"  e.g.   "%+20s"
+      右对齐："+"   e.g.   "%+20s"
       空格：若符号为正，则显示空格，负则显示"-"   e.g.   "%  6.2f"      
       #：对c,s,d,u类无影响；对o类，在输出时加前缀o；对x类，在输出时加前缀0x；对e,g,f 类当结果有小数时才给出小数点
 ```
 
 ###### 1.3 格式化输出
 
-```
+``` 
+
  ［标志］［输出最少宽度］［．精度］［长度］类型
   "％-md" ：左对齐，若m比实际少时，按实际输出。
   "%m.ns"：输出m位，取字符串(左起)n位，左补空格，当n>m or m省略时m=n.
@@ -39,12 +41,13 @@
                                  　     输出"     CH"
   "%m.nf"：输出浮点数，m为宽度，n为小数点右边数位
            				e.g. "%3.1f"   输入3852.99
-                                        输出3853.0
+                                       输出3853.0
 ```
 
 #### 2. 符号的英文读法
 
-```
+``` 
+
 +　 plus　加号；正号
 -　 minus　减号；负号
 ±　plus or minus　正负号
@@ -124,7 +127,7 @@
 
 ```c++
 ///C
-#include <assert.h>         //设定插入点
+#include <assert.h>         //断言
 #include <ctype.h>          //字符处理
 #include <errno.h>          //定义错误码
 #include <float.h>          //浮点数处理
@@ -139,7 +142,6 @@
 #include <stdlib.h>         //定义杂项函数及内存分配函数
 #include <string.h>         //字符串处理
 #include <time.h>           //定义关于时间的函数
-
 
 ///////////////////////////////////////////////////////////////////////////////
 ///标准 C++
@@ -171,7 +173,7 @@
 #include <vector>           //STL 动态数组容器
 #include <cwchar>
 #include <cwctype>
-using namespace std;
+using namespace std; 
 
 ///////////////////////////////////////////////////////////////////////
 ///C99 增加
@@ -182,7 +184,8 @@ using namespace std;
 #include <stdint.h>         //整型环境
 #include <tgmath.h>         //通用类型数学宏
 ///////////////////////////////////////////////////////////////////////
-```
+
+``` 
 
 #### 4. 注意事项
 
@@ -222,7 +225,7 @@ int stringReverse(char *array,int length){
 
 #### 7. 进制转换
 
-```c
+``` c
 /**
  *将任意进制数转换成整型范围内的十进制数
  *str   为base进制数
@@ -256,8 +259,9 @@ int anyToDecimal(char *str,int base,int length){
  *clear() push() top() empty() pop() size()
  *free()
  */
-typedef int T;
+typedef int T; 
 struct myStack{
+
     int curr,size_limit;
     T *array;
     myStack(int s){//必须传入栈的大小
@@ -277,8 +281,10 @@ struct myStack{
         else return false;}
     void pop(){curr--;}
     int  size(){return curr+1;}
-};
-```
+
+}; 
+
+``` 
 
 #### 8. 表达式转换
 
@@ -348,7 +354,7 @@ void shunting_yard(char *result,const char *expression){
 
 #### 9. 搜索
 
-```c
+``` c
 /**
  *二分查找
  *如果找到flag为1 posi为所查找到的位置
@@ -384,7 +390,7 @@ struct node *binarySearch(int *array,int value,int left,int right){
 
 #### 10. 排序
 
-```c
+``` c
 /**
  *二叉排序树模板
  *插入函数 插入之前应先申请一个要插入的pointer节点 然后传进去
@@ -494,10 +500,11 @@ int constructBST(struct node *root,int *array,int start,int end){
 
 ```c++
 /**
- *quickSort ,快速排序，传入要排序的数组和需要排序的范围[left,right]
+ *quickSort , 快速排序，传入要排序的数组和需要排序的范围[left, right]
  *从小到大
  */
-void quickSort(int left,int right,int array[]){
+void quickSort(int left, int right, int array[]){
+
     int i = left,j = right,x = array[(left+right)/2];
     do{
         while(array[i] < x)i++;
@@ -506,8 +513,10 @@ void quickSort(int left,int right,int array[]){
     }while(i < j);//i >= j
     if(i < right)quickSort(i,right,array);
     if(j > left)quickSort(left,j,array);
+
 }
-```
+
+``` 
 
 ```c
 /**
@@ -553,7 +562,7 @@ int heapSort(int array[],int n){// one-based 从1开始保存的 到n结束 left
 
 #### 11. 递归
 
-```c
+``` c
 /**
  *汉诺塔 递归实现
  */
@@ -574,7 +583,7 @@ int hanoi(int n,char a,char b,char c){//将n个盘子借助b从a移动到c
 
 #### 12. 链表
 
-```c
+``` c
 /**
  *构建一个未赋值的循环单链表 至少有头和尾两个节点
  */
@@ -602,7 +611,7 @@ struct node *constructRecurrentSingleChain(int start,int end){
 }
 ```
 
-```c
+``` c
 /**
  *构建未赋值的循环双链表 至少有头和尾两个节点
  */
@@ -645,6 +654,7 @@ struct node *constructRecurrentDoubleChain(int start,int end){
  class BigInteger
  {
 public:
+
      BigInteger();
      BigInteger(int);
      BigInteger(string);
@@ -652,25 +662,35 @@ public:
      friend BigInteger operator +(const BigInteger&,const BigInteger&);
      friend BigInteger operator *(const BigInteger&,const BigInteger&);
      friend ostream&   operator<<(std::ostream&,BigInteger&);
+
 private:
+
      static const int max_len = 100000;
+
  public:
+
      int len;
      int array[max_len];
- };
- BigInteger::BigInteger(){
+
+ }; 
+ BigInteger:: BigInteger(){
+
      memset(array,0,sizeof(array));
      //或者将sizeof(array) 换成 max_len*4
      len = 0;
+
  }
- BigInteger::BigInteger(string digit){
+ BigInteger:: BigInteger(string digit){
+
      memset(array,0,sizeof(array));
      len = digit.size();
      for(int i = 0;i < len;i++){
          array[i] = digit[len - i - 1] - '0';
      }
+
  }
- BigInteger::BigInteger(int digit){
+ BigInteger:: BigInteger(int digit){
+
      memset(array,0,sizeof(array));
      if(digit == 0)len = 1;
      else		len = 0;
@@ -678,15 +698,21 @@ private:
          array[len++] = digit % 10;
          digit        = digit / 10;
      }
+
  }
- bool BigInteger::Display(){
+ bool BigInteger:: Display(){
+
      for(int i = len - 1;i >= 0;i--) cout << array[i];
      return true;
+
  }
- std::ostream& operator<<(ostream &out,BigInteger &digit){
+ std::ostream& operator<<(ostream &out, BigInteger &digit){
+
      digit.Display(); return out;
+
  }
- BigInteger operator +(const BigInteger &augend,const BigInteger &addend){
+ BigInteger operator +(const BigInteger &augend, const BigInteger &addend){
+
      BigInteger result;
      result.len = max(augend.len,addend.len);
      for(int i = 0;i < result.len;i++)
@@ -699,9 +725,11 @@ private:
      }
      if(result.array[result.len] > 0){result.len++;}
      return result;
+
  }
- BigInteger operator *(const BigInteger &multiplicand,const BigInteger &multiplier)
+ BigInteger operator *(const BigInteger &multiplicand, const BigInteger &multiplier)
  {
+
      BigInteger result;
      result.len = multiplicand.len + multiplier.len - 1;
      for(int i = 0;i < multiplicand.len;i++){
@@ -718,8 +746,10 @@ private:
      while(result.len > 1 && result.array[result.len-1] == 0)
          result.len--;//为0的时候不用去掉第一位的0
      return result;
+
  }
-```
+
+``` 
 
 ```c
 /**
@@ -745,7 +775,7 @@ int factorial(int *array,int n){
 }
 ```
 
-```c
+``` c
 /**
  *大数模板(浙大)
  *注意这里的int可能会超 void div(bignum_t a,const int b,int& c)
@@ -972,7 +1002,7 @@ void permutation(bignum_t a,int m,int n){
 
 #### 14. 并查集
 
-```c
+``` c
 int father[15];
 void makeSet(){
     for(inti = 0;i <= n;i++){
@@ -994,7 +1024,7 @@ void unionSet(int x,int y){
 
 #### 15. 状态压缩
 
-```c
+``` c
 /**
  *状态压缩法求阶乘，虽然可以求但这只是状态压缩恰好的一个性质 它主要用在动态规划中
  *注释里的是f[13] = f[12] + f[5] + f[9] 的工作过程，t -= t & -t 就是将最开始的t的每位1取出来，取      
@@ -1020,7 +1050,7 @@ for(int i = 1;i < (1<<n);i++){// 1 到 2^n - 1
 
 #### 16. 树状数组
 
-```c
+``` c
 /**
  *一维树状数组,树状数组C[],输入的数组A[]
  *A[] C[]都是从1开始的 在build之前C[]初始化为0
@@ -1058,7 +1088,7 @@ int sum(int i){//求前n项和
 }
 ```
 
-```c
+``` c
 /**
  *二维树状数组
  *二维树状数组和一维几乎一样
@@ -1088,11 +1118,12 @@ int query(int i,int j){//查询
 
 #### 17. 线段树
 
-```c
+``` c
 /**
  *树状数组是前序和，应用范围要窄，线段树可以求区间和、区间最大值等等
  *下面是求线段树求区间和的示例，可以根据具体情况修改
  */
+ 
 #define MAX 100000
 struct node{
     int left,right;
@@ -1153,7 +1184,7 @@ long long query(int i,int a,int b){//查询某个区间的所有值的和
 }
 ```
 
-```c
+``` c
 /**
  *二维线段树
  *调用add,query,build时注意传参时的大小顺序，左小于右
@@ -1261,7 +1292,7 @@ y.resize(unique(y.begin(),y.end()) - y.begin());
 
 #### 18. Trie树
 
-```c
+``` c
 /**
  *trie树，hash的方式，用空间换时间 注意别忘了创建根节点
  */
@@ -1292,7 +1323,8 @@ void trieInsert(struct node *curr,const char *str,const int len){
 ```
 
 #### 19. 矩阵
-```c
+
+``` c
 /**
  *矩阵快速幂(2行2列)
  */
@@ -1326,7 +1358,7 @@ matrix fastPower(matrix a,int po){
 
 #### 20. 精度处理
 
-```c
+``` c
 /**
  *返回0表示x==0，-1表示x < 0, 1表示x大于0
  *complf(a-b) == 0, a == b 或者 fabs(a-b) < eps
@@ -1340,11 +1372,9 @@ matrix fastPower(matrix a,int po){
 int complf(double x){ return x < -eps?-1:((x < eps)?0:1);}
 ```
 
-
-
 #### 21. 动态规划
 
-```c
+``` c
 /**
  *0-1 背包 （二维实现，可以优化到一维）
  *注释中所说的对象可以为一个物体，也可以为一种方案，视题目而定
@@ -1369,7 +1399,7 @@ for(i = 1;i <= n;i++){//从第一个对象开始
 
 #### 22. 素数生成
 
-```c
+``` c
 /**
  *筛法求素数 筛法求素数，找到[1,MAXL]的所有素数
  */
@@ -1394,7 +1424,7 @@ long long getPrime(){
 
 #### 23. 素数测试
 
-```c
+``` c
 /**
  *Miller-Rabin 素数测试
  *随机选取s个基 出错的概率至多为 1/(2^s)，50已经足够了
@@ -1450,7 +1480,7 @@ int millerRabin(int n,int s = 50){
 
 #### 24. 最大公约数/最小公倍数
 
-```c
+``` c
 /**
  *最大公约数 gcd
  *最小公倍数 lcm = a*b/gcd(a,b)
@@ -1463,7 +1493,7 @@ int lcm(int a,int b){
 }
 ```
 
-```c
+``` c
 /**
  *二进制欧几里得辗转相除法求gcd
  *传参的时候注意a >= b
@@ -1486,7 +1516,7 @@ int64 binaryGcd(int64 a,int64 b){
 
 #### 25. 欧拉 phi 函数
 
-```c
+``` c
 /**
  *欧拉phi函数  返回小于x且与x互质的数的个数
  */
@@ -1506,7 +1536,7 @@ int euler_phi(int x){
 
 #### 26. 快速幂取模
 
-```c
+``` c
 /**
  *快速幂取模 返回 a^n mod m
  */
@@ -1528,7 +1558,7 @@ int exp_mod(int a,int n,int m){
 
 #### 27. 扩展欧几里得
 
-```c
+``` c
 /**
  *扩展欧几里德 ax+by = gcd(a,b) 解出x,y
  */
@@ -1547,7 +1577,7 @@ long long extendedEuclid(long long a,long long b,long long &x,long long &y){
 
 #### 28. 梅森素数
 
-```c
+``` c
 /**
  *扩展欧几里德 ax+by = gcd(a,b) 解出x,y
  */
@@ -1566,7 +1596,7 @@ long long extendedEuclid(long long a,long long b,long long &x,long long &y){
 
 #### 29. 最大流
 
-```c
+``` c
 /**
  *最大流 传入源点 汇点和顶点数
  *graph[u][v]为u到v的剩余流量 （residual flow）
@@ -1609,7 +1639,7 @@ int Edmonds_Karp(int source, int sink, int vertex_num){
 }
 ```
 
-```c
+``` c
 /**
  *ISAP求最大流
  */
@@ -1731,7 +1761,7 @@ int sap(int st, int ed) {
 
 #### 30. 最短路
 
-```c
+``` c
 /**
  *SPFA可以用来求单源最短路径和求解差分约束
  *可以处理负边和负权回路
@@ -1774,35 +1804,46 @@ int SPFA(int  ll,int rr){
  *dijkstra求最短路，用优先队列优化
  *传入源点和顶点个数(注意顶点是从0还是1开始)
  *如果只计算源点到单个目的点的最短路，需将flag标记为1 并传入目的点
- *注意head,countt等初始化
+ *注意head, countt等初始化
  */
 #define MAX 1100
 #define INF 1000000000
 struct node{
+
     int u,v,w,next;//顶点结构体
-}edge[100100];
-int head[MAX],countt=0;//每次都要初始化
-void add(int u,int v,int w){//加边
+
+}edge[100100]; 
+int head[MAX], countt=0; //每次都要初始化
+void add(int u, int v, int w){//加边
+
     edge[countt].u = u;
     edge[countt].v = v;
     edge[countt].w = w;
     edge[countt].next = head[u];head[u] = countt++;
+
 }
 struct node2{
+
     int ver,dist; //顶点和dist[ver]
     node2(int v,int d){ver = v;dist = d;}
-};	
-bool operator > (const node2 &a,const node2 &b){
+
+}; 	
+bool operator > (const node2 &a, const node2 &b){
+
     //重载优先队列的 > 运算符
     if(a.dist > b.dist)return true;
     return false;
+
 }
-bool operator < (const node2 &a,const node2 &b){
+bool operator < (const node2 &a, const node2 &b){
+
     //重载优先队列的 < 运算符
     if(a.dist < b.dist)return true;
     return false;
+
 }
-int dijkstra(int source,int vertex_num,int end=-1,int flag=0){
+int dijkstra(int source, int vertex_num, int end=-1, int flag=0){
+
     int dist[MAX];
     //优先队列(小根,top为最小值)
     priority_queue<node2,vector<node2>,greater<node2> > my;
@@ -1826,8 +1867,10 @@ int dijkstra(int source,int vertex_num,int end=-1,int flag=0){
     }
     ///dist[i]保存的是源点到所有i点的最短距离
     return 1;
+
 }
-```
+
+``` 
 
 #### 31. 最小生成树
 
@@ -1874,7 +1917,7 @@ int kruskal(){
 
 #### 31. 有向图的强连通分量
 
-```c
+``` c
 /**
  *Tarjan algorithm for strongly connected component
  *求强连通分量的tarjan算法,邻接表表示
@@ -1912,7 +1955,7 @@ void tarjan_scc(int u){
 
 #### 32. 无向图的双连通分量
 
-```c
+``` c
 /**
  *Tarjan algorithm for strongly connected component
  *求强连通分量的tarjan算法,邻接表表示
@@ -1950,7 +1993,7 @@ void tarjan_scc(int u){
 
 #### 33. 二分图的最大匹配
 
-```c
+``` c
 /**
  *二分图的最大匹配（邻接矩阵），交大模板
  *graph初始化为0，返回最大匹配数
@@ -1986,7 +2029,7 @@ int maximumMatch(){
 
 #### 34. 叉积/点与线段/线段与线段
 
-```c
+``` c
 struct point{double x,y;};
 struct segment{point a,b;};
 /**
@@ -1998,7 +2041,6 @@ struct segment{point a,b;};
 double crossProduct(const point &p1, const point &p2,const point &q1,const point &q2){
     return (p2.x-p1.x)*(q2.y-q1.y) - (p2.y-p1.y)*(q2.x-q1.x);
 }
-
 
 /**
  *判断点p是否在线段（q1,q2）上
@@ -2026,7 +2068,6 @@ int onSegment(const point &p,const segment &s){
     return 0;
 }
 
-
 /**
  *判断两线段是否相交
  */
@@ -2049,7 +2090,7 @@ int intersect(const segment &s1, const segment &s2){
 
 #### 35. 组合
 
-```c
+``` c
 /**
  *组合 从a个数中选b个的选法C(a,b)
  */
@@ -2066,7 +2107,7 @@ long long combination( long long a,long long b )
 
 #### 36. Catalan Number
 
-```c
+``` c
 /**
  *网上找的模板 验证过前一百的catalan数
  */
@@ -2248,10 +2289,10 @@ int main(){
 
 #### 37. 通项公式
 
-```
+``` 
+
 //F[n]=a*F[n-1]+b*F[n-2]的通项公式的求解
 //此类方程的特征方程为 x^2 - a^x - b*1 = 0;
 //假设方程的解为q1,q2 ; F[n]=c1 * q1^n + c2 * q2^n
 //将f[0] ,f[1]等已知的结果代入，就可求得c1,c2
 ```
-
