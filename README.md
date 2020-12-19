@@ -200,9 +200,9 @@ using namespace std;
 
 #### 5. N次方求和
 
-![img](images/1526545956817.jpg)
+![img](https://acmer.oss-cn-beijing.aliyuncs.com/1526545956817.jpg)
 
-![img](images/1526546055667.jpg)
+![img](https://acmer.oss-cn-beijing.aliyuncs.com/1526546055667.jpg)
 
 #### 6.  字符串处理
 
