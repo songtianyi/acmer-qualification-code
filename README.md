@@ -223,6 +223,107 @@ int stringReverse(char *array,int length){
 }
 ```
 
+``` c
+// 颠倒一个字符串部分位置的顺序, 原地
+inline void swap(char *x, char *y) {
+    char t = *x; *x = *y; *y = t;
+}
+ 
+char* reverse(char *buffer, int i, int j)
+{
+    while (i < j)
+        swap(&buffer[i++], &buffer[j--]);
+ 
+    return buffer;
+}
+```
+
+``` c
+// 反转整数
+#include<stdio.h>
+#include<stdlib.h>
+#define INF_MAX 0x7fffffff
+#define INF_MIN -0x7fffffff-1
+int reverse(int x){
+    int ans = 0;
+    int l = x;
+    while(l != 0 ) {
+        int h = l%10;
+        l = l/10;
+        // ans * 10 + h > INF_MAX
+        // ans * 10 + h < INF_MIN
+        if(INF_MAX/10 < ans || (INF_MAX/10 == ans && h > 7)) {
+            return 0;
+        }else if(INF_MIN/10 > ans || (INF_MIN/10 == ans && h < -8)) {
+            return 0;
+        }
+        ans = ans * 10 + h;
+    }
+    return ans;
+}
+
+int main() {
+    printf("%d\n", reverse(123));
+    printf("%d\n", reverse(-123));
+    return 0;
+}
+```
+
+``` c
+// 最长回文子串, 暴力解法
+// 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+// 
+// 示例 1：
+// 
+// 输入: "babad"
+// 输出: "bab"
+// 注意: "aba" 也是一个有效答案。
+// 示例 2：
+// 
+// 输入: "cbbd"
+// 输出: "bb"
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int valid(char *s, int i, int j) {
+    while(i <= j) {
+        if(s[i++] != s[j--]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+char * longestPalindrome(char * s){
+    int len = strlen(s);
+    if (len == 1) {
+        return s;
+    }
+    int  max = 1, maxi = 0;
+    for(int i = 0;i < len-1;i++) {
+        for(int j = i+1;j < len;j++) {
+            int x = j - i + 1;
+            if(x > max && valid(s, i,j)) {
+                if(x  > max) {
+                    max = x;
+                    maxi = i;
+                }
+            }
+        }
+    }
+    s = s+maxi;
+    s[max] = '\0';
+    return s;
+}
+
+int main() {
+    char a[10] = "babad";
+    printf("%s\n", longestPalindrome(a));
+    return 0;
+}
+```
+
 #### 7. 进制转换
 
 ``` c
@@ -286,6 +387,53 @@ struct myStack{
 
 ``` 
 
+``` c
+// c stack 没有安全检查, 使用时自己注意
+#include <stdio.h>
+#include <stdlib.h>
+
+struct stack {
+  int *values;
+  int pos, size;
+};
+
+void init_stack(struct stack *s, int size) {
+  s->pos = 0;
+  s->size = size;
+  s->values = malloc(sizeof(int) * size);
+}
+
+struct stack *create(int size) {
+  struct stack *p = malloc(sizeof(struct stack));
+  init_stack(p, size);
+  return p;
+}
+void delete (struct stack *s) { free(s->values); }
+
+// not safe
+void push(struct stack *s, int v) { s->values[s->pos++] = v; }
+void dump(struct stack *s) {
+  printf("[%d", s->values[0]);
+  int i = 1;
+  while(i < s->pos) {
+     printf(", %d", s->values[i++]); 
+  }
+  printf("]\n");
+}
+int empty(struct stack *s) { return s->pos == 0; }
+int full(struct stack *s) { return s->pos >= s->size; }
+int pop(struct stack *s) { return s->values[--s->pos]; }
+int top(struct stack *s) { return s->values[s->pos - 1]; }
+
+int main() {
+  struct stack *s = create(10);
+  push(s, 1);
+  dump(s);
+  delete (s);
+}
+
+```
+
 #### 8. 表达式转换
 
 ```c++
@@ -298,17 +446,20 @@ int priorityLevle(const char x){
 *自己定义操作符的结合性，左或者右
 */
 int rightAssociative(const char x){
+
     switch(x){
         case '^':{ return 1;}
     }
     return 0;
+
 }	
 /**
 *shunting_yard: infix expression to RPN
 *中缀转换成后缀
 *传入中缀表达式expression，RPN保存在result中
 */
-void shunting_yard(char *result,const char *expression){
+void shunting_yard(char *result, const char *expression){
+
     stack<char> my;
     int len = strlen(expression), r = 0;
     for(int  i = 0;i < len;i++){
@@ -349,8 +500,10 @@ void shunting_yard(char *result,const char *expression){
         result[r++] = my.top(); my.pop();
     }
     result[r] = '\0';
+
 }
-```
+
+``` 
 
 #### 9. 搜索
 
