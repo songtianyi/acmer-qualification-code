@@ -16,5 +16,8 @@
     "editor.tabCompletion": "on",
     "editor.acceptSuggestionOnEnter": "on",
     "editor.defaultFormatter": "mervin.markdown-formatter"
-  }
+  },
+  "markdownConverter.ConversionType": [
+    "HTML"
+  ]
 }
