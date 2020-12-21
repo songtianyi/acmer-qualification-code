@@ -392,15 +392,16 @@ struct myStack{
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef int T;
 struct stack {
-  int *values;
+  T *values;
   int pos, size;
 };
 
 void init_stack(struct stack *s, int size) {
   s->pos = 0;
   s->size = size;
-  s->values = malloc(sizeof(int) * size);
+  s->values = malloc(sizeof(T) * size);
 }
 
 struct stack *create(int size) {
@@ -411,19 +412,19 @@ struct stack *create(int size) {
 void delete (struct stack *s) { free(s->values); }
 
 // not safe
-void push(struct stack *s, int v) { s->values[s->pos++] = v; }
+void push(struct stack *s, T v) { s->values[s->pos++] = v; }
 void dump(struct stack *s) {
-  printf("[%d", s->values[0]);
+  printf("[%p", s->values[0]);
   int i = 1;
   while(i < s->pos) {
-     printf(", %d", s->values[i++]); 
+     printf(", %p", s->values[i++]); 
   }
   printf("]\n");
 }
 int empty(struct stack *s) { return s->pos == 0; }
 int full(struct stack *s) { return s->pos >= s->size; }
-int pop(struct stack *s) { return s->values[--s->pos]; }
-int top(struct stack *s) { return s->values[s->pos - 1]; }
+struct T *pop(struct stack *s) { return s->values[--s->pos]; }
+struct T *top(struct stack *s) { return s->values[s->pos - 1]; }
 
 int main() {
   struct stack *s = create(10);
