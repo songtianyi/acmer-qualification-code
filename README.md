@@ -102,7 +102,7 @@
 /　slash, divide, oblique 斜线，斜杠，除号
 //　slash-slash, comment 双斜线，注释符
 #　pound　井 号
-　backslash, sometimes escape　反斜线转义符，有时表示转义符或续行符
+\　backslash, sometimes escape　反斜线转义符，有时表示转义符或续行符
 ~　tilde　波浪符
 . 　full stop　句号
 ,　comma　逗号
@@ -114,8 +114,8 @@
 -　hyphen　连字号
 – dash 破折号
 …　dots/ ellipsis　省略号
-” 　single quotation marks 单引号
-“”　double quotation marks 双引号
+" 　single quotation marks 单引号
+""　double quotation marks 双引号
 ‖ parallel 双线号
 &　ampersand = and
 ～　swung dash 代字号
