@@ -441,7 +441,7 @@ int main() {
 /**
 *自己定义操作符的优先级
 */
-int priorityLevle(const char x){
+int priorityLevel(const char x){
 }
 /**
 *自己定义操作符的结合性，左或者右
@@ -487,8 +487,8 @@ void shunting_yard(char *result, const char *expression){
                     ///如果是操作符 需要弹出栈里优先级比它高 或者 优先级相等但是是左结合的操作符
                     && my.top() != '('//遇到左括号相当于栈为空
                     && (
-                        (priorityLevle(my.top()) > priorityLevle(expression[i]))
-                  ||(priorityLevle(my.top())==priorityLevle(expression[i])&& !rightAssociative(my.top()))
+                        (priorityLevel(my.top()) > priorityLevle(expression[i]))
+                  ||(priorityLevel(my.top())==priorityLevle(expression[i])&& !rightAssociative(my.top()))
                        )
                     ){
                     result[r++] = my.top(); my.pop();
