@@ -564,7 +564,6 @@ struct node {
 };
 struct node *bst_insert(struct node *curr, struct node *p) {
   if (curr == NULL) {
-    printf("insert %d ok\n", p->value);
     return p;  //插入的节点的左右孩子的初始值一定要为NULL
   } else if (p->value < curr->value) {
     curr->left = bst_insert(curr->left, p);
@@ -576,14 +575,12 @@ struct node *bst_insert(struct node *curr, struct node *p) {
 
 void bst_traversal(struct node *curr) {
   if (curr != NULL) {
-    printf("(%p, %d, %p, %p)\n", curr, curr->value, curr->left, curr->right);
     bst_traversal(curr->left);
     bst_traversal(curr->right);
   }
 }
 struct node *bst_search(struct node *curr, struct node *parent, int value,
                         int ret_flag) {
-  printf("%d\n", curr->value);
   if (curr == NULL) {
     // leaf node
     return NULL;
@@ -645,10 +642,13 @@ int bst_delete(struct node *parent, struct node *p, int is_left) {
     }
     printf("%d --> %d\n", p->value, s->value);
     p->value = s->value;
-    if (is_left) {
+    if (sp == p) {
+      // p 的右子树没有左子树
+      sp->right = s->right;
+    } else {
+      //因为s肯定没有左子树 所以把右子树接在父节点的左指针上就行了
+      sp->left = s->right;
     }
-    sp->left = s->right;
-    //因为s肯定没有左子树 所以把右子树接在父节点的左指针上就行了
     free(s);
   }
   return 1;
@@ -661,9 +661,6 @@ void bst_build(struct node *root, int *array, int start, int end) {
     p->value = array[start];
     p->left = p->right = NULL;  // init
     bst_insert(root, p);
-    if (root == NULL) {
-      printf("root null\n");
-    }
     start++;
   }
 }
@@ -674,14 +671,11 @@ int main() {
   root->left = root->right = NULL;
   root->value = a[0];
   bst_build(root, a, 1, 10);
-  if (root == NULL) {
-    printf("root null\n");
-  }
   bst_traversal(root);
   printf("root %p %d\n", root, root->value);
   struct node *ans = bst_search(root, root, 56, 0);
   if (ans != NULL) {
-    printf("%d\n", ans->value);
+    printf("ans value %d\n", ans->value);
     bst_delete(ans, ans->right, 1);
     bst_traversal(root);
   }
