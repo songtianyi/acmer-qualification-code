@@ -544,145 +544,6 @@ struct node *binarySearch(int *array,int value,int left,int right){
 
 #### 10. 排序
 
-``` c
-/**
- * 二叉排序树模板
- * 插入函数 插入之前应先申请一个要插入的p节点 然后传进去
- * 查找函数 root为根节点 parent等于root value为要查找的值
- * ret_flag为0返回查找到的节点的父节点这样便于删除时使用  ret_flag
- * 为1返回查找到的节点的指针
- * 删除函数 传入要删除的节点的父节点和要删除的节点
- * 如果待删节点为父节点的左孩子is_left=1 如果为右孩子 is_left=1 构造函数
- * 将一个数组从start到end（不包括end）的范围构造为一个二叉排序树 root为根节点
- */
-#include <stdio.h>
-#include <stdlib.h>
-
-struct node {
-  int value;
-  struct node *left, *right;
-};
-struct node *bst_insert(struct node *curr, struct node *p) {
-  if (curr == NULL) {
-    return p;  //插入的节点的左右孩子的初始值一定要为NULL
-  } else if (p->value < curr->value) {
-    curr->left = bst_insert(curr->left, p);
-  } else {
-    curr->right = bst_insert(curr->right, p);
-  }
-  return curr;
-}
-
-void bst_traversal(struct node *curr) {
-  if (curr != NULL) {
-    bst_traversal(curr->left);
-    bst_traversal(curr->right);
-  }
-}
-struct node *bst_search(struct node *curr, struct node *parent, int value,
-                        int ret_flag) {
-  if (curr == NULL) {
-    // leaf node
-    return NULL;
-  } else if (curr->value == value) {
-    // found, check ret flag
-    // 返回的是要查找节点的父节点或者是要查找的节点
-    // 使用父节点是因为这样便于删除的时候使用父节点进行删除
-    if (ret_flag == 0) {
-      return parent;
-    } else {
-      return curr;
-    }
-  } else if (value < curr->value) {
-    return bst_search(curr->left, curr, value, ret_flag);
-  } else {
-    return bst_search(curr->right, curr, value, ret_flag);
-  }
-}
-
-int bst_delete(struct node *parent, struct node *p, int is_left) {
-  if (p->left == NULL && p->right == NULL) {
-    // leaft node
-    if (is_left) {
-      // p 为parent的左子叶
-      // 将 parent的左指针置为空
-      parent->left = NULL;
-    } else {
-      // p 为parent的右子叶
-      parent->right = NULL;
-    }
-    free(p);
-  } else if (p->left == NULL) {
-    // 待删除节点无左子树，说明有右子树
-    if (is_left) {
-      // 将待删除的节点的右子树 赋值给父节点的左子树
-      parent->left = p->right;
-    } else {
-      // 将待删除的节点的右子树 赋值给父节点的左子树
-      parent->right = p->right;
-    }
-    free(p);
-  } else if (p->right == NULL) {
-    // 待删除节点无右子树，说明有左子树
-    if (is_left) {
-      parent->left = p->left;
-    } else {
-      parent->right = p->left;
-    }
-    free(p);
-  } else {
-    struct node *s = p->right;
-    struct node *sp = p;
-    //找右子树中最左的节点 或者找左子树中最右的节点
-    //然后和要删除的位置交换value
-    //这里选择前者
-    while (s->left != NULL) {
-      sp = s;
-      s = s->left;
-    }
-    printf("%d --> %d\n", p->value, s->value);
-    p->value = s->value;
-    if (sp == p) {
-      // p 的右子树没有左子树
-      sp->right = s->right;
-    } else {
-      //因为s肯定没有左子树 所以把右子树接在父节点的左指针上就行了
-      sp->left = s->right;
-    }
-    free(s);
-  }
-  return 1;
-}
-void bst_build(struct node *root, int *array, int start, int end) {
-  // [start, end)
-  while (start < end) {
-    // create node
-    struct node *p = malloc(sizeof(struct node));
-    p->value = array[start];
-    p->left = p->right = NULL;  // init
-    bst_insert(root, p);
-    start++;
-  }
-}
-
-int main() {
-  int a[10] = {1, 450, 3, 4, 56, 12, 123, 45, 23, 6};
-  struct node *root = malloc(sizeof(struct node));
-  root->left = root->right = NULL;
-  root->value = a[0];
-  bst_build(root, a, 1, 10);
-  bst_traversal(root);
-  printf("root %p %d\n", root, root->value);
-  struct node *ans = bst_search(root, root, 56, 0);
-  if (ans != NULL) {
-    printf("ans value %d\n", ans->value);
-    bst_delete(ans, ans->right, 1);
-    bst_traversal(root);
-  }
-}
-
-```
-
 ```c++
 /**
  *quickSort , 快速排序，传入要排序的数组和需要排序的范围[left, right]
@@ -2474,10 +2335,150 @@ int main(){
 
 #### 37. 通项公式
 
-``` 
+``` c
 
 //F[n]=a*F[n-1]+b*F[n-2]的通项公式的求解
 //此类方程的特征方程为 x^2 - a^x - b*1 = 0;
 //假设方程的解为q1,q2 ; F[n]=c1 * q1^n + c2 * q2^n
 //将f[0] ,f[1]等已知的结果代入，就可求得c1,c2
+```
+
+#### 38. 二叉搜索树
+
+``` c
+/**
+ * 二叉排序树模板
+ * 插入函数 插入之前应先申请一个要插入的p节点 然后传进去
+ * 查找函数 root为根节点 parent等于root value为要查找的值
+ * ret_flag为0返回查找到的节点的父节点这样便于删除时使用  ret_flag
+ * 为1返回查找到的节点的指针
+ * 删除函数 传入要删除的节点的父节点和要删除的节点
+ * 如果待删节点为父节点的左孩子is_left=1 如果为右孩子 is_left=1 构造函数
+ * 将一个数组从start到end（不包括end）的范围构造为一个二叉排序树 root为根节点
+ */
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+  int value;
+  struct node *left, *right;
+};
+struct node *bst_insert(struct node *curr, struct node *p) {
+  if (curr == NULL) {
+    return p;  //插入的节点的左右孩子的初始值一定要为NULL
+  } else if (p->value < curr->value) {
+    curr->left = bst_insert(curr->left, p);
+  } else {
+    curr->right = bst_insert(curr->right, p);
+  }
+  return curr;
+}
+
+void bst_traversal(struct node *curr) {
+  if (curr != NULL) {
+    bst_traversal(curr->left);
+    bst_traversal(curr->right);
+  }
+}
+struct node *bst_search(struct node *curr, struct node *parent, int value,
+                        int ret_flag) {
+  if (curr == NULL) {
+    // leaf node
+    return NULL;
+  } else if (curr->value == value) {
+    // found, check ret flag
+    // 返回的是要查找节点的父节点或者是要查找的节点
+    // 使用父节点是因为这样便于删除的时候使用父节点进行删除
+    if (ret_flag == 0) {
+      return parent;
+    } else {
+      return curr;
+    }
+  } else if (value < curr->value) {
+    return bst_search(curr->left, curr, value, ret_flag);
+  } else {
+    return bst_search(curr->right, curr, value, ret_flag);
+  }
+}
+
+int bst_delete(struct node *parent, struct node *p, int is_left) {
+  if (p->left == NULL && p->right == NULL) {
+    // leaft node
+    if (is_left) {
+      // p 为parent的左子叶
+      // 将 parent的左指针置为空
+      parent->left = NULL;
+    } else {
+      // p 为parent的右子叶
+      parent->right = NULL;
+    }
+    free(p);
+  } else if (p->left == NULL) {
+    // 待删除节点无左子树，说明有右子树
+    if (is_left) {
+      // 将待删除的节点的右子树 赋值给父节点的左子树
+      parent->left = p->right;
+    } else {
+      // 将待删除的节点的右子树 赋值给父节点的左子树
+      parent->right = p->right;
+    }
+    free(p);
+  } else if (p->right == NULL) {
+    // 待删除节点无右子树，说明有左子树
+    if (is_left) {
+      parent->left = p->left;
+    } else {
+      parent->right = p->left;
+    }
+    free(p);
+  } else {
+    struct node *s = p->right;
+    struct node *sp = p;
+    //找右子树中最左的节点 或者找左子树中最右的节点
+    //然后和要删除的位置交换value
+    //这里选择前者
+    while (s->left != NULL) {
+      sp = s;
+      s = s->left;
+    }
+    printf("%d --> %d\n", p->value, s->value);
+    p->value = s->value;
+    if (sp == p) {
+      // p 的右子树没有左子树
+      sp->right = s->right;
+    } else {
+      //因为s肯定没有左子树 所以把右子树接在父节点的左指针上就行了
+      sp->left = s->right;
+    }
+    free(s);
+  }
+  return 1;
+}
+void bst_build(struct node *root, int *array, int start, int end) {
+  // [start, end)
+  while (start < end) {
+    // create node
+    struct node *p = malloc(sizeof(struct node));
+    p->value = array[start];
+    p->left = p->right = NULL;  // init
+    bst_insert(root, p);
+    start++;
+  }
+}
+
+int main() {
+  int a[10] = {1, 450, 3, 4, 56, 12, 123, 45, 23, 6};
+  struct node *root = malloc(sizeof(struct node));
+  root->left = root->right = NULL;
+  root->value = a[0];
+  bst_build(root, a, 1, 10);
+  bst_traversal(root);
+  printf("root %p %d\n", root, root->value);
+  struct node *ans = bst_search(root, root, 56, 0);
+  if (ans != NULL) {
+    printf("ans value %d\n", ans->value);
+    bst_delete(ans, ans->right, 1);
+    bst_traversal(root);
+  }
+}
 ```
