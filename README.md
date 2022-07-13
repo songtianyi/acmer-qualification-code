@@ -2,7 +2,7 @@
 
 ### Programming Contest Archive
 
-Some coding contest solutions are achived are achived and grouped by hosted platform like *Codeforces* 
+Some coding contest solutions are achieved and grouped by hosted platform like *Codeforces*.
 
 | :warning: Note |
 |:---------------------------|
