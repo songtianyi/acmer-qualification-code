@@ -4,7 +4,7 @@
 
 Some coding contest solutions are achieved and grouped by hosted platform like *Codeforces*.
 
-| :warning: Note |
+| :warning: Caution |
 |:---------------------------|
 | Unaccepted answers included, be carefull :exclamation::exclamation::exclamation:|
 
