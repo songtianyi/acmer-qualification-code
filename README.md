@@ -1,10 +1,20 @@
 # acmer-qualification-code
 
+## Programming Contest Archive
+
+| :warning: Note |
+|:---------------------------|
+| Unaccepted answers included, be carefull :exclamation::exclamation::exclamation:|
+
+If you are using **Rust**, you may need to know how to get rid of the `i/o` stuff. Check **.rs* files.
+
+## Handy templates
+
 #### 1. printf
 
 ###### 1.1 符号说明
 
-``` pla
+```pla
       %a(%A)     浮点数、十六进制数字和p-(P-)记数法(C99)
       %c         字符
       %d         有符号十进制整数
@@ -22,7 +32,7 @@
 
 ###### 1.2 对齐
 
-``` 
+```
 
       左对齐："-"   e.g.   "%-20s"
       右对齐："+"   e.g.   "%+20s"
@@ -32,7 +42,7 @@
 
 ###### 1.3 格式化输出
 
-``` 
+```
 
  ［标志］［输出最少宽度］［．精度］［长度］类型
   "％-md" ：左对齐，若m比实际少时，按实际输出。
@@ -46,7 +56,7 @@
 
 #### 2. 符号的英文读法
 
-``` 
+```
 
 +　 plus　加号；正号
 -　 minus　减号；负号
@@ -185,7 +195,7 @@ using namespace std;
 #include <tgmath.h>         //通用类型数学宏
 ///////////////////////////////////////////////////////////////////////
 
-``` 
+```
 
 #### 4. 注意事项
 
@@ -223,7 +233,7 @@ int stringReverse(char *array,int length){
 }
 ```
 
-``` c
+```c
 // 颠倒一个字符串部分位置的顺序, 原地
 inline void swap(char *x, char *y) {
     char t = *x; *x = *y; *y = t;
@@ -238,7 +248,7 @@ char* reverse(char *buffer, int i, int j)
 }
 ```
 
-``` c
+```c
 // 反转整数
 #include<stdio.h>
 #include<stdlib.h>
@@ -269,7 +279,7 @@ int main() {
 }
 ```
 
-``` c
+```c
 // 最长回文子串, 暴力解法
 // 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
 // 
@@ -326,7 +336,7 @@ int main() {
 
 #### 7. 进制转换
 
-``` c
+```c
 /**
  *将任意进制数转换成整型范围内的十进制数
  *str   为base进制数
@@ -385,7 +395,7 @@ struct myStack{
 
 }; 
 
-``` 
+```
 
 ``` c
 // c stack 没有安全检查, 使用时自己注意
@@ -504,7 +514,7 @@ void shunting_yard(char *result, const char *expression){
 
 }
 
-``` 
+```
 
 #### 9. 搜索
 
@@ -544,7 +554,7 @@ struct node *binarySearch(int *array,int value,int left,int right){
 
 #### 10. 排序
 
-``` c
+```c
 /**
  * 二叉排序树模板
  * 插入函数 插入之前应先申请一个要插入的p节点 然后传进去
@@ -702,7 +712,6 @@ int main() {
 }
 ```
 
-
 ```c++
 /**
  *quickSort , 快速排序，传入要排序的数组和需要排序的范围[left, right]
@@ -721,7 +730,7 @@ void quickSort(int left, int right, int array[]){
 
 }
 
-``` 
+```
 
 ```c
 /**
@@ -767,7 +776,7 @@ int heapSort(int array[],int n){// one-based 从1开始保存的 到n结束 left
 
 #### 11. 递归
 
-``` c
+```c
 /**
  *汉诺塔 递归实现
  */
@@ -788,7 +797,7 @@ int hanoi(int n,char a,char b,char c){//将n个盘子借助b从a移动到c
 
 #### 12. 链表
 
-``` c
+```c
 /**
  *构建一个未赋值的循环单链表 至少有头和尾两个节点
  */
@@ -816,7 +825,7 @@ struct node *constructRecurrentSingleChain(int start,int end){
 }
 ```
 
-``` c
+```c
 /**
  *构建未赋值的循环双链表 至少有头和尾两个节点
  */
@@ -954,7 +963,7 @@ private:
 
  }
 
-``` 
+```
 
 ```c
 /**
@@ -980,7 +989,7 @@ int factorial(int *array,int n){
 }
 ```
 
-``` c
+```c
 /**
  *大数模板(浙大)
  *注意这里的int可能会超 void div(bignum_t a,const int b,int& c)
@@ -1207,7 +1216,7 @@ void permutation(bignum_t a,int m,int n){
 
 #### 14. 并查集
 
-``` c
+```c
 int father[15];
 void makeSet(){
     for(inti = 0;i <= n;i++){
@@ -1229,7 +1238,7 @@ void unionSet(int x,int y){
 
 #### 15. 状态压缩
 
-``` c
+```c
 /**
  *状态压缩法求阶乘，虽然可以求但这只是状态压缩恰好的一个性质 它主要用在动态规划中
  *注释里的是f[13] = f[12] + f[5] + f[9] 的工作过程，t -= t & -t 就是将最开始的t的每位1取出来，取      
@@ -1255,7 +1264,7 @@ for(int i = 1;i < (1<<n);i++){// 1 到 2^n - 1
 
 #### 16. 树状数组
 
-``` c
+```c
 /**
  *一维树状数组,树状数组C[],输入的数组A[]
  *A[] C[]都是从1开始的 在build之前C[]初始化为0
@@ -1293,7 +1302,7 @@ int sum(int i){//求前n项和
 }
 ```
 
-``` c
+```c
 /**
  *二维树状数组
  *二维树状数组和一维几乎一样
@@ -1323,7 +1332,7 @@ int query(int i,int j){//查询
 
 #### 17. 线段树
 
-``` c
+```c
 /**
  *树状数组是前序和，应用范围要窄，线段树可以求区间和、区间最大值等等
  *下面是求线段树求区间和的示例，可以根据具体情况修改
@@ -1389,7 +1398,7 @@ long long query(int i,int a,int b){//查询某个区间的所有值的和
 }
 ```
 
-``` c
+```c
 /**
  *二维线段树
  *调用add,query,build时注意传参时的大小顺序，左小于右
@@ -1497,7 +1506,7 @@ y.resize(unique(y.begin(),y.end()) - y.begin());
 
 #### 18. Trie树
 
-``` c
+```c
 /**
  *trie树，hash的方式，用空间换时间 注意别忘了创建根节点
  */
@@ -1529,7 +1538,7 @@ void trieInsert(struct node *curr,const char *str,const int len){
 
 #### 19. 矩阵
 
-``` c
+```c
 /**
  *矩阵快速幂(2行2列)
  */
@@ -1563,7 +1572,7 @@ matrix fastPower(matrix a,int po){
 
 #### 20. 精度处理
 
-``` c
+```c
 /**
  *返回0表示x==0，-1表示x < 0, 1表示x大于0
  *complf(a-b) == 0, a == b 或者 fabs(a-b) < eps
@@ -1579,7 +1588,7 @@ int complf(double x){ return x < -eps?-1:((x < eps)?0:1);}
 
 #### 21. 动态规划
 
-``` c
+```c
 /**
  *0-1 背包 （二维实现，可以优化到一维）
  *注释中所说的对象可以为一个物体，也可以为一种方案，视题目而定
@@ -1604,7 +1613,7 @@ for(i = 1;i <= n;i++){//从第一个对象开始
 
 #### 22. 素数生成
 
-``` c
+```c
 /**
  *筛法求素数 筛法求素数，找到[1,MAXL]的所有素数
  */
@@ -1629,7 +1638,7 @@ long long getPrime(){
 
 #### 23. 素数测试
 
-``` c
+```c
 /**
  *Miller-Rabin 素数测试
  *随机选取s个基 出错的概率至多为 1/(2^s)，50已经足够了
@@ -1685,7 +1694,7 @@ int millerRabin(int n,int s = 50){
 
 #### 24. 最大公约数/最小公倍数
 
-``` c
+```c
 /**
  *最大公约数 gcd
  *最小公倍数 lcm = a*b/gcd(a,b)
@@ -1698,7 +1707,7 @@ int lcm(int a,int b){
 }
 ```
 
-``` c
+```c
 /**
  *二进制欧几里得辗转相除法求gcd
  *传参的时候注意a >= b
@@ -1721,7 +1730,7 @@ int64 binaryGcd(int64 a,int64 b){
 
 #### 25. 欧拉 phi 函数
 
-``` c
+```c
 /**
  *欧拉phi函数  返回小于x且与x互质的数的个数
  */
@@ -1741,7 +1750,7 @@ int euler_phi(int x){
 
 #### 26. 快速幂取模
 
-``` c
+```c
 /**
  *快速幂取模 返回 a^n mod m
  */
@@ -1763,7 +1772,7 @@ int exp_mod(int a,int n,int m){
 
 #### 27. 扩展欧几里得
 
-``` c
+```c
 /**
  *扩展欧几里德 ax+by = gcd(a,b) 解出x,y
  */
@@ -1782,7 +1791,7 @@ long long extendedEuclid(long long a,long long b,long long &x,long long &y){
 
 #### 28. 梅森素数
 
-``` c
+```c
 /**
  *扩展欧几里德 ax+by = gcd(a,b) 解出x,y
  */
@@ -1801,7 +1810,7 @@ long long extendedEuclid(long long a,long long b,long long &x,long long &y){
 
 #### 29. 最大流
 
-``` c
+```c
 /**
  *最大流 传入源点 汇点和顶点数
  *graph[u][v]为u到v的剩余流量 （residual flow）
@@ -1844,7 +1853,7 @@ int Edmonds_Karp(int source, int sink, int vertex_num){
 }
 ```
 
-``` c
+```c
 /**
  *ISAP求最大流
  */
@@ -1966,7 +1975,7 @@ int sap(int st, int ed) {
 
 #### 30. 最短路
 
-``` c
+```c
 /**
  *SPFA可以用来求单源最短路径和求解差分约束
  *可以处理负边和负权回路
@@ -2075,7 +2084,7 @@ int dijkstra(int source, int vertex_num, int end=-1, int flag=0){
 
 }
 
-``` 
+```
 
 #### 31. 最小生成树
 
@@ -2122,7 +2131,7 @@ int kruskal(){
 
 #### 31. 有向图的强连通分量
 
-``` c
+```c
 /**
  *Tarjan algorithm for strongly connected component
  *求强连通分量的tarjan算法,邻接表表示
@@ -2160,7 +2169,7 @@ void tarjan_scc(int u){
 
 #### 32. 无向图的双连通分量
 
-``` c
+```c
 /**
  *Tarjan algorithm for strongly connected component
  *求强连通分量的tarjan算法,邻接表表示
@@ -2198,7 +2207,7 @@ void tarjan_scc(int u){
 
 #### 33. 二分图的最大匹配
 
-``` c
+```c
 /**
  *二分图的最大匹配（邻接矩阵），交大模板
  *graph初始化为0，返回最大匹配数
@@ -2234,7 +2243,7 @@ int maximumMatch(){
 
 #### 34. 叉积/点与线段/线段与线段
 
-``` c
+```c
 struct point{double x,y;};
 struct segment{point a,b;};
 /**
@@ -2295,7 +2304,7 @@ int intersect(const segment &s1, const segment &s2){
 
 #### 35. 组合
 
-``` c
+```c
 /**
  *组合 从a个数中选b个的选法C(a,b)
  */
@@ -2312,7 +2321,7 @@ long long combination( long long a,long long b )
 
 #### 36. Catalan Number
 
-``` c
+```c
 /**
  *网上找的模板 验证过前一百的catalan数
  */
@@ -2494,7 +2503,7 @@ int main(){
 
 #### 37. 通项公式
 
-``` c
+```c
 
 //F[n]=a*F[n-1]+b*F[n-2]的通项公式的求解
 //此类方程的特征方程为 x^2 - a^x - b*1 = 0;
