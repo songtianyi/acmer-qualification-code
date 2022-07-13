@@ -1,6 +1,8 @@
 # acmer-qualification-code
 
-## Programming Contest Archive
+### Programming Contest Archive
+
+Some coding contest solutions are achived are achived and grouped by hosted platform like *Codeforces* 
 
 | :warning: Note |
 |:---------------------------|
@@ -8,7 +10,7 @@
 
 If you are using **Rust**, you may need to know how to get rid of the `i/o` stuff. Check **.rs* files.
 
-## Handy templates
+### Handy templates
 
 #### 1. printf
 
