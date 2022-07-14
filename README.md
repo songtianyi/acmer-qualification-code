@@ -8,6 +8,11 @@ Some coding contest solutions are achieved and grouping by hosted platform like 
 |:---------------------------|
 | Unaccepted answers included, be carefull :exclamation::exclamation::exclamation:|
 
+```shell
+# find Rust solutions
+find . -name "*.rs"
+```
+
 ### Handy templates in Rust
 
 ```rust
