@@ -3,7 +3,6 @@ use std::collections::HashMap;
 #[allow(unused_imports)]
 use std::collections::HashSet;
 use std::io;
-#[allow(unused_imports)]
 use std::cmp::min;
 
 // input macros
@@ -45,6 +44,39 @@ macro_rules! read {
 }
 
 fn solve() {
+    let n = read!(i32);
+    // Base 1d array
+    let mut grid_raw = vec![0; n as usize * n as usize];
+    // Vector of 'width' elements slices
+    let mut grid_base: Vec<_> = grid_raw.as_mut_slice().chunks_mut(n as usize).collect();
+    // Final 2d array `&mut [&mut [_]]`
+    let square = grid_base.as_mut_slice();
+    for i in 0..n {
+        let a = read!(String);
+        let s = a.as_bytes();
+        for j in 0..s.len() {
+            if s[j] == '1' as u8 {
+                square[i as usize][j as usize] = 1;
+            }
+        }
+    }
+    let mut ans = 0;
+    let un = n as usize;
+    let check = n/2 + n%2;
+    //println!("{:?}", square);
+    for row in 0..check {
+        for col in row..(n-row-1){
+            let r = row as usize;
+            let c = col as usize;
+
+            // .             1 2 .         1   2                  3 .   2 .              3 .    2
+            let sum = square[r][c] + square[c][un-r-1] + square[un-r-1][un-c-1] + square[un-c-1][r];
+            //println!("{}{} -> {}{} -> {}{} -> {}{}", r, c, c, un-r-1, un-c-1, un-r-1, un-c-1, r);
+            ans += min(sum, 4-sum); 
+        }
+    }
+    print!("{}", ans);
+    //println!("{:?}", square);
 }
 
 fn main() {
