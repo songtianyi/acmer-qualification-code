@@ -62,16 +62,13 @@ fn solve() {
     }
     let mut ans = 0;
     let un = n as usize;
-    let check = n/2 + n%2;
-    //println!("{:?}", square);
+    let check = n/2;
     for row in 0..check {
         for col in row..(n-row-1){
             let r = row as usize;
             let c = col as usize;
 
-            // .             1 2 .         1   2                  3 .   2 .              3 .    2
             let sum = square[r][c] + square[c][un-r-1] + square[un-r-1][un-c-1] + square[un-c-1][r];
-            //println!("{}{} -> {}{} -> {}{} -> {}{}", r, c, c, un-r-1, un-c-1, un-r-1, un-c-1, r);
             ans += min(sum, 4-sum); 
         }
     }
