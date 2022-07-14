@@ -1,7 +1,5 @@
-
-use std::io;
 use std::collections::HashSet;
-
+use std::io;
 
 // input macros
 #[allow(unused_macros)]
@@ -46,7 +44,6 @@ fn main() {
         }
         for i in 0..n {
             strset.insert(&strs[i as usize]);
-            //println!("the size of current is {}", strs[i as usize].len());
         }
         for i in 0..n {
             let mut found = false;
@@ -64,6 +61,6 @@ fn main() {
             }
         }
         print!("\n");
-        t-=1;
+        t -= 1;
     }
 }
