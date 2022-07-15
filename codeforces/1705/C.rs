@@ -45,48 +45,38 @@ macro_rules! read {
 }
 
 fn solve() {
-    let (n,c,q) = read!(i32,i32,i32);
+    let (n, c, q) = read!(i32, i32, i32);
 
     let s = read!();
-    let mut m: HashMap<char, Vec<i64>> = HashMap::new();
-    for (i, ch) in s.chars().enumerate() {
-        let v = m.entry(ch).or_insert(vec![]);
-        v.push(i as i64 + 1);
-    }
-    //println!("{:?}", m);
+    // init implicit first round
+    let mut round_left: Vec<i64> = vec![0i64; c as usize + 1];
+    round_left[0] = 0;
+    let mut round_right: Vec<i64> = vec![0i64; c as usize + 1];
+    round_right[0] = n as i64; // not include
+    let mut round_diff: Vec<i64> = vec![0i64; c as usize + 1];
+    round_diff[0] = 0;
 
-    let mut sum = n as i64;
-    for round in 0..c {
+    for cr in 1..c + 1 {
         let (l, r) = read!(i64, i64);
-        //print!("{} {}\n", l, r);
         // for each round
-        for cu in 97..123 {
-            if !m.contains_key(&(cu as u8 as char)) {
-                continue;
-            }
-            let v = m.get_mut(&(cu as u8 as char)).unwrap();
-            let mut app: Vec<i64> = vec![];
-            for (_, x) in v.iter().enumerate() {
-                if *x >= l && *x <= r {
-                    app.push(x-l+1+sum);
-                }
-            }
-            v.extend(app);
-            v.sort();
-        }
-        sum += (r-l+1) as i64;
-        //println!("{:?}", m);
+        let cru = cr as usize;
+        round_left[cru] = round_right[cru - 1];
+        round_right[cru] = round_left[cru] + r - l + 1;
+        round_diff[cru] = round_left[cru] - l + 1;
+        //println!("{} {} {}", round_left[cru], round_right[cru], round_diff[cru]);
     }
     for i in 0..q {
-        let pos = read!(i64);
-        //println!("pos-{}", pos);
-        for (k, v) in m.iter() {
-            let ok = v.binary_search(&pos).is_ok();
-            if ok {
-                println!("{}", k);
-                break;
+        let mut pos = read!(i64) - 1;
+        for cr in (1..c + 1).rev() {
+            let cru = cr as usize;
+            if pos < round_left[cru] {
+                continue;
+            } else {
+                pos -= round_diff[cru];
             }
         }
+        //println!("{}", pos);
+        print!("{}\n", s.chars().nth((pos) as usize).unwrap());
     }
 }
 
