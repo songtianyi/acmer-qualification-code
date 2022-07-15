@@ -19,12 +19,14 @@ find . -name "*.c"
 
 ```rust
 #[allow(unused_imports)]
+use std::cmp::max;
+#[allow(unused_imports)]
+use std::cmp::min;
+#[allow(unused_imports)]
 use std::collections::HashMap;
 #[allow(unused_imports)]
 use std::collections::HashSet;
 use std::io;
-#[allow(unused_imports)]
-use std::cmp::min;
 
 // input macros
 #[allow(unused_macros)]
