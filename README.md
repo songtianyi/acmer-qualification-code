@@ -32,38 +32,36 @@ use std::io;
 #[allow(unused_macros)]
 
 macro_rules! read {
-    // defualt read as string
+    // eg.
     // let s = read!();
     () => {{
         let mut line: String = String::new();
         io::stdin().read_line(&mut line).unwrap();
         line.trim().to_string()
     }};
-    // read single certain type value
-    // let v = read!(i32)
-    // let v = read!(i64)
-    ($t:ty) => {{
-        let mut line = String::new();
-        io::stdin().read_line(&mut line).unwrap();
-        line.trim().parse::<$t>().unwrap()
-    }};
-    // read as Vec<> with certain type and name
-    // let a: Vec<i32>;
-    // read!(a as Vec<i32>);
-    ($v:ident as Vec<$t:ty>) => {{
+
+    // eg.
+    // let v = read!(Vec<i32>)
+    // let v = read!(Vec<char>)
+    (Vec<$t:ty>) => ({
         let mut line: String = String::new();
         io::stdin().read_line(&mut line).unwrap();
-        $v = line
-            .split_whitespace()
+        line.split_whitespace()
             .map(|x| x.parse::<$t>().unwrap())
             .collect();
-    }};
-    // read with type and variable name
-    ($v:ident as $t:ty) => {{
-        let mut line: String = String::new();
+    });
+
+    // eg.
+    // let v = read!(i32);
+    // let v = read!(i64);
+    // let (i, j, k) = read!(i32, i32, i32);
+    ($($t:ty),*) => {{
+        let mut line = String::new();
         io::stdin().read_line(&mut line).unwrap();
-        $v = line.trim().parse::<$t>().unwrap();
+        let mut iter = line.split_whitespace();
+        ($(iter.next().unwrap().parse::<$t>().unwrap()),*)
     }};
+
 }
 
 fn solve() {
