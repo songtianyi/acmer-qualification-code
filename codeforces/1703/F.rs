@@ -1,11 +1,11 @@
+use std::cmp::max;
+#[allow(unused_imports)]
+use std::cmp::min;
 #[allow(unused_imports)]
 use std::collections::HashMap;
 #[allow(unused_imports)]
 use std::collections::HashSet;
 use std::io;
-#[allow(unused_imports)]
-use std::cmp::min;
-use std::cmp::max;
 
 // input macros
 #[allow(unused_macros)]
@@ -51,7 +51,7 @@ fn solve() {
     read!(a as Vec<i32>);
     let mut dp = vec![0; (n + 1) as usize];
     for (i, &x) in a.iter().enumerate() {
-        dp[i + 1 as usize] = dp[i] + ((i as i32 +1) > x) as i32;
+        dp[i + 1 as usize] = dp[i] + ((i as i32 + 1) > x) as i32;
     }
 
     let mut ans = 0i64;
@@ -61,7 +61,7 @@ fn solve() {
             // 因为要求 i < a_j, 所以满足要求的要从 a_j - 1 开始，因为都是整数嘛 a_j-1 就已经满足了
             // 所以从这里开始计算
             // 取最大值是为了处理 a_j 为 0 的情况
-            ans += dp[(max(x-1, 0)) as usize] as i64;
+            ans += dp[(max(x - 1, 0)) as usize] as i64;
         }
     }
     print!("{}", ans);
