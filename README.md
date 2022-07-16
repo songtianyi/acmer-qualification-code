@@ -31,6 +31,7 @@ use std::io;
 // input macros
 #[allow(unused_macros)]
 
+// rustc +nightly -Zunpretty=expanded your.rs
 macro_rules! read {
     // eg.
     // let s = read!();
@@ -48,7 +49,7 @@ macro_rules! read {
         io::stdin().read_line(&mut line).unwrap();
         line.split_whitespace()
             .map(|x| x.parse::<$t>().unwrap())
-            .collect();
+            .collect()
     });
 
     // eg.
@@ -61,7 +62,6 @@ macro_rules! read {
         let mut iter = line.split_whitespace();
         ($(iter.next().unwrap().parse::<$t>().unwrap()),*)
     }};
-
 }
 
 fn solve() {
