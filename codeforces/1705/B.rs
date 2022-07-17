@@ -42,7 +42,6 @@ macro_rules! read {
         let mut iter = line.split_whitespace();
         ($(iter.next().unwrap().parse::<$t>().unwrap()),*)
     }};
-
 }
 
 fn solve() {
