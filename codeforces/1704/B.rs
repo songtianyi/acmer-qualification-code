@@ -50,21 +50,20 @@ fn solve() {
     let mut ans = 0;
     let (mut u, mut d) = (a.get(0).unwrap() + x, a.get(0).unwrap() - x);
     a.get(1..).unwrap().iter().for_each(|v| {
-        let cu =  *v + &x;
+        let cu = *v + &x;
         let cd = *v - &x;
         if cu < d || cd > u {
             // not intersect
             ans += 1;
             u = cu;
             d = cd;
-        }else {
-            // merge 
+        } else {
+            // merge
             u = min(u, cu);
             d = max(d, cd);
         }
     });
     print!("{}", ans);
-  
 }
 
 fn main() {

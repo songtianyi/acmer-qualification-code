@@ -44,15 +44,14 @@ macro_rules! read {
     }};
 }
 
-
 fn solve() {
     let (n, m) = read!(i32, i32);
     let a: Vec<char> = read!().chars().collect();
-    let b: Vec<char>  = read!().chars().collect();
+    let b: Vec<char> = read!().chars().collect();
     if a.len() == b.len() {
         if a == b {
             print!("YES");
-        }else {
+        } else {
             print!("NO");
         }
         return;
@@ -60,18 +59,16 @@ fn solve() {
 
     let ml = min(a.len(), b.len());
 
-
     if a[a.len() - ml + 1..] == b[b.len() - ml + 1..] {
         let ai = (a.len() - ml) as usize;
         let bi = (b.len() - ml) as usize;
 
-                    let ok = a[..ai+1].iter().any(|x| x == &b[bi]);
-                    if ok {
-                        print!("YES");
-                    } else {
-                        print!("NO");
-                    }
-
+        let ok = a[..ai + 1].iter().any(|x| x == &b[bi]);
+        if ok {
+            print!("YES");
+        } else {
+            print!("NO");
+        }
     } else {
         print!("NO");
     }
